@@ -1,0 +1,53 @@
+{
+  "manifest": "void/0.1",
+  "name": "voidbicho",
+  "display_name": "Void Bicho",
+  "kind": "runtime",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": "https://github.com/migriv24/VoidBicho",
+  "description": "The compute layer for Void Core: how an application acquires a model, runs it, pays for it, and tells the truth about what it did. A model is a rune; selection is a tag query; every invocation returns a provenance stamp. Perception models (segmentation, 3D lifting, captioning, embedding) optionally enrich a host's log.",
+  "status": "alpha",
+  "status_note": "First code 2026-10-10: a Python perception runtime (python/bicho/: catalogue, tag-query selection, the invocation contract, SAM 2.1 Large and OpenCLIP adapters, a JSON-lines serve mode), driven by Void Squid's toolbox as a process. Weights live in %USERPROFILE%/.voidbicho/models, never in the repository; CUDA PyTorch in a git-ignored .venv. Nothing links Bicho, so requires is empty. third_party/ holds SAM 3D Objects as a reference only. ONNX Runtime and Needle's C++ engine remain planned (okf/roadmap.md).",
+  "kind_note": "A library with no user-facing install, hence `runtime`; the schema has no `library` kind.",
+
+  "requires": [],
+
+  "interacts_with": [
+    {
+      "name": "voidsquid",
+      "kind": "application",
+      "seam": "effect",
+      "direction": "inbound",
+      "note": "Planned. Void Squid's smart logs (layer 3, learned perception) and its asset library would invoke Bicho models through Void Core's `effect` seam; no link either way."
+    },
+    {
+      "name": "voidmago",
+      "kind": "application",
+      "seam": "void.json",
+      "direction": "outbound",
+      "note": "Reads this manifest to build the family compatibility matrix."
+    }
+  ],
+
+  "provides": {
+    "contracts": { "knowledge_bundle": "okf/" },
+    "effects": [],
+    "effects_note": "None yet. When built, every model invocation is an effect by Bicho's own contract (okf/concepts/invocation.md)."
+  },
+
+  "vendors": [
+    {
+      "name": "SAM 3D Objects",
+      "version": "f91db411c50efee93d8db7aeb323885650f6f722",
+      "license": "LicenseRef-SAM-License",
+      "upstream": "https://github.com/facebookresearch/sam-3d-objects",
+      "path": "third_party/sam-3d-objects",
+      "link": "source",
+      "note": "Reference code only: not compiled, not linked, no weights. Needs Linux and a 32 GB GPU. See third_party/README.md."
+    }
+  ],
+
+  "version_sources": [],
+  "platforms": []
+}

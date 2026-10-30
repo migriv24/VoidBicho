@@ -8,8 +8,10 @@ An Open Knowledge Format bundle describing **Void Bicho**: the compute layer for
 Void Core — how an application **acquires** a model, **runs** it, **pays** for it,
 and **tells the truth** about what it did. A library, not an application.
 
-This is the **dev** bundle. **Nothing is built: every concept here is
-`status:planned`**, per the honesty convention inherited from the Void Core bundle —
+This is the **dev** bundle. **First code 2026-10-10: a Python perception runtime** (`python/bicho/`:
+catalogue, tag-query selection, the invocation contract, SAM 2.1 and CLIP adapters, `serve`;
+since 2026-10-11 also SAM 3, CLAP, MiniLM and BLIP, with weights moved from the Hugging Face cache into the store).
+Everything else is `status:planned`, per the honesty convention inherited from the Void Core bundle —
 a concept may not claim `status:current` without a `resource:` link to the code that
 backs it.
 
@@ -42,15 +44,22 @@ features.
 * [Invocation](/concepts/invocation.md) - one bounded call across the effect boundary, and the provenance it must return
 * [Budget](/concepts/budget.md) - cost as a first-class value, and refusal as a value rather than an exception
 * [Pipeline](/concepts/pipeline.md) - multi-stage work as a mantle; where the interaction-net shape does and does not fit
+* [Perception](/concepts/perception.md) - **built 2026-10-10** (SAM 2.1 Large, CLIP; `python/bicho/`) - segmentation, 3D lifting, captioning and embedding as ordinary models that optionally enrich a host's log; proposals with provenance, never truth
 
 # Design — the rationale
 
 * [Boundaries](/design/boundaries.md) - **read this first**; what Bicho owns, what it refuses, and why neither sibling imports the other
 * [Open questions](/design/open-questions.md) - what is genuinely undecided, and what blocks what
+* [Needle](/design/needle.md) - *(2026-10-10)* the resident micro-model, moved here from Void Core's plan; what Needle 3 is now (and that its telemetry is on by default); three jobs for Void Squid
 
 # References
 
 * [Prior art](/references/prior-art.md) - what already exists to borrow, and the small part that does not
+* [The 3D-and-AI landscape](/references/3d-ai-landscape.md) - *(2026-10-09)* SAM 3, MobileSAM, SAM 3D, TripoSR, Hunyuan3D, TRELLIS, MeshCoder, ConceptGraphs: what each needs, and what runs on this machine
+
+# Third-party model code
+
+`third_party/` holds model code Bicho may one day run, as a reference and an adapter target; never linked, never with weights. Today: `sam-3d-objects/` (SAM License; needs Linux and 32 GB VRAM; does not run here). See `third_party/README.md`.
 
 # Planned work
 
@@ -67,9 +76,9 @@ precedent — a Void-flavored set is deferred to the author. See
 
 Void Core's ontology (rune, mantle, domain, holiday, glyph, dispatcher, Voidscript,
 reduce/temper/scry) is defined authoritatively at
-`C:\Users\migri\Documents\Projects\VoidCore\okf`. Void Palabra's at
-`C:\Users\migri\Documents\Projects\VoidPalabra\okf`; Latin-OS's at
-`C:\Users\migri\Documents\Projects\LatinOS\okf`. Cross-bundle references are written
+`..\VoidCore\okf`. Void Palabra's at
+`..\VoidPalabra\okf`; Latin-OS's at
+`..\LatinOS\okf`. Cross-bundle references are written
 `VoidCore:/concepts/mantle.md` (plain-text convention — OKF links are
 bundle-root-relative, so foreign bundles cannot be linked directly).
 

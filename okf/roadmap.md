@@ -54,7 +54,11 @@ the vocabulary first — the same argument Palabra's Rung 0 makes.
 
 1. The [invocation](/concepts/invocation.md) request/response shape, **including
    refusal** ([budget](/concepts/budget.md)) from the start rather than bolted on.
-2. One local backend (llama.cpp / GGUF) behind it.
+2. One local backend behind it. *Revised 2026-10-10:* the first two are **ONNX Runtime**
+   (a small perception model, MobileSAM, on CPU; [perception](/concepts/perception.md)) and
+   **Needle's C++ engine** (tool routing, structured extraction, embeddings; [Needle](/design/needle.md)),
+   because those are what Void Squid will actually call first and both run on this laptop's
+   CPU. llama.cpp / GGUF follows for a general language model.
 3. The provenance stamp.
 4. Cost measurement — actual, and separately, estimate.
 

@@ -1,0 +1,336 @@
+{
+ "mantle": "models",
+ "note": "Void Bicho's model catalogue (okf/concepts/model.md): one entry per model, a rune in shape. Selection is a tag query. Weights are never committed; `where.weights` is a file name under the model store (%USERPROFILE%/.voidbicho/models), fetched by `python -m bicho fetch`. Models moved from the Hugging Face cache on 2026-10-11 live in <store>/hf/hub; Bicho points HF_HUB_CACHE there.",
+ "models": [
+  {
+   "spirit": {
+    "id": "rn_sam21_hiera_large",
+    "name": "sam2.1-hiera-large"
+   },
+   "tags": [
+    "segment-2d",
+    "local",
+    "torch",
+    "vision",
+    "large",
+    "free"
+   ],
+   "facets": {
+    "who": "Meta FAIR (facebookresearch/sam2)",
+    "what": "Segment Anything 2.1, Hiera-L image encoder: class-agnostic masks from points, boxes, or a grid",
+    "where": {
+     "weights": "sam2.1_hiera_large.pt",
+     "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt",
+     "config": "configs/sam2.1/sam2.1_hiera_l.yaml"
+    },
+    "how": "torch-local",
+    "license": "Apache-2.0 (code and weights)"
+   },
+   "content": {
+    "kind": "segment-2d",
+    "params": 224400000.0,
+    "bytes": 898083611,
+    "input": "image (path) + optional points/boxes",
+    "output": "masks (npz) + per-mask predicted_iou, stability_score, bbox, area"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_sam21_hiera_tiny",
+    "name": "sam2.1-hiera-tiny"
+   },
+   "tags": [
+    "segment-2d",
+    "local",
+    "torch",
+    "vision",
+    "tiny",
+    "free"
+   ],
+   "facets": {
+    "who": "Meta FAIR (facebookresearch/sam2)",
+    "what": "Segment Anything 2.1, Hiera-T: the same contract, a fraction of the cost",
+    "where": {
+     "weights": "sam2.1_hiera_tiny.pt",
+     "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_tiny.pt",
+     "config": "configs/sam2.1/sam2.1_hiera_t.yaml"
+    },
+    "how": "torch-local",
+    "license": "Apache-2.0 (code and weights)"
+   },
+   "content": {
+    "kind": "segment-2d",
+    "params": 38900000.0,
+    "bytes": 156008466,
+    "input": "image (path) + optional points/boxes",
+    "output": "masks (npz) + scores"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_clip_vitb16_laion2b",
+    "name": "clip-vit-b-16-laion2b"
+   },
+   "tags": [
+    "label",
+    "embed",
+    "local",
+    "torch",
+    "vision",
+    "text",
+    "free"
+   ],
+   "facets": {
+    "who": "LAION / OpenCLIP (mlfoundations/open_clip)",
+    "what": "CLIP ViT-B/16 trained on LAION-2B: image and text in one embedding space; zero-shot labels by text prompts",
+    "where": {
+     "weights": "open_clip:ViT-B-16/laion2b_s34b_b88k"
+    },
+    "how": "torch-local",
+    "license": "MIT (OpenCLIP); weights released by LAION for research"
+   },
+   "content": {
+    "kind": "label",
+    "params": 149600000.0,
+    "bytes": 598000000,
+    "input": "images (paths or crops) + candidate labels",
+    "output": "probabilities per label, embeddings"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_clap_htsat_unfused",
+    "name": "clap-htsat-unfused"
+   },
+   "tags": [
+    "label-audio",
+    "audio",
+    "text",
+    "local",
+    "torch",
+    "free"
+   ],
+   "facets": {
+    "who": "LAION (laion/clap-htsat-unfused)",
+    "what": "CLAP: audio and text in one embedding space; find a sound by describing it",
+    "where": {
+     "weights": "hf:laion/clap-htsat-unfused"
+    },
+    "how": "torch-local",
+    "license": "Apache-2.0"
+   },
+   "content": {
+    "kind": "label-audio",
+    "params": 153000000.0,
+    "bytes": 615000000,
+    "input": "wav paths + text queries",
+    "output": "rankings or probabilities"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_minilm_l6_v2",
+    "name": "all-MiniLM-L6-v2"
+   },
+   "tags": [
+    "embed",
+    "text",
+    "local",
+    "torch",
+    "small",
+    "free"
+   ],
+   "facets": {
+    "who": "sentence-transformers",
+    "what": "sentence embeddings (384-d): find text by meaning",
+    "where": {
+     "weights": "hf:sentence-transformers/all-MiniLM-L6-v2"
+    },
+    "how": "torch-local",
+    "license": "Apache-2.0"
+   },
+   "content": {
+    "kind": "embed",
+    "params": 22700000.0,
+    "bytes": 91000000,
+    "input": "texts",
+    "output": "vectors"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_blip_caption_base",
+    "name": "blip-image-captioning-base"
+   },
+   "tags": [
+    "caption",
+    "vision",
+    "local",
+    "torch",
+    "free"
+   ],
+   "facets": {
+    "who": "Salesforce",
+    "what": "BLIP: describe an image in a sentence",
+    "where": {
+     "weights": "hf:Salesforce/blip-image-captioning-base"
+    },
+    "how": "torch-local",
+    "license": "BSD-3-Clause"
+   },
+   "content": {
+    "kind": "caption",
+    "params": 247000000.0,
+    "bytes": 990000000,
+    "input": "image paths",
+    "output": "captions"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_sam3",
+    "name": "sam3"
+   },
+   "tags": [
+    "segment-text",
+    "vision",
+    "local",
+    "torch",
+    "large",
+    "free"
+   ],
+   "facets": {
+    "who": "Meta (facebookresearch/sam3); weights repackaged by 1038lab",
+    "what": "SAM 3: every instance of a concept named in words",
+    "where": {
+     "weights": "hf:1038lab/sam3/sam3.pt"
+    },
+    "how": "torch-local",
+    "license": "SAM License"
+   },
+   "content": {
+    "kind": "segment-text",
+    "params": 848000000.0,
+    "bytes": 3450062241,
+    "input": "image + noun phrase",
+    "output": "masks + scores"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_detr_resnet50",
+    "name": "detr-resnet-50"
+   },
+   "tags": [
+    "detect",
+    "vision",
+    "local",
+    "torch",
+    "coco",
+    "free"
+   ],
+   "facets": {
+    "who": "Facebook AI",
+    "what": "DETR object detection over COCO's 80 classes",
+    "where": {
+     "weights": "hf:facebook/detr-resnet-50"
+    },
+    "how": "torch-local",
+    "license": "Apache-2.0"
+   },
+   "content": {
+    "kind": "detect",
+    "params": 41000000.0,
+    "bytes": 167000000,
+    "input": "image",
+    "output": "boxes + COCO labels"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_kokoro_82m",
+    "name": "Kokoro-82M"
+   },
+   "tags": [
+    "speech",
+    "tts",
+    "local",
+    "free"
+   ],
+   "facets": {
+    "who": "hexgrad",
+    "what": "text to speech (catalogued; no adapter yet)",
+    "where": {
+     "weights": "hf:hexgrad/Kokoro-82M"
+    },
+    "how": "none-yet",
+    "license": "Apache-2.0"
+   },
+   "content": {
+    "kind": "tts",
+    "params": 82000000.0,
+    "bytes": 330000000,
+    "input": "text",
+    "output": "audio"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_gpt2",
+    "name": "gpt2"
+   },
+   "tags": [
+    "llm",
+    "text",
+    "local",
+    "tiny",
+    "free"
+   ],
+   "facets": {
+    "who": "OpenAI (openai-community/gpt2)",
+    "what": "a 2019 text model (catalogued; too weak to answer questions about games)",
+    "where": {
+     "weights": "hf:openai-community/gpt2"
+    },
+    "how": "none-yet",
+    "license": "MIT"
+   },
+   "content": {
+    "kind": "llm",
+    "params": 124000000.0,
+    "bytes": 548000000,
+    "input": "text",
+    "output": "text"
+   }
+  },
+  {
+   "spirit": {
+    "id": "rn_propose_baseline",
+    "name": "propose-baseline"
+   },
+   "tags": [
+    "propose",
+    "local",
+    "free",
+    "deterministic",
+    "baseline"
+   ],
+   "facets": {
+    "who": "Void Squid forge baseline (authored 2026-10-28)",
+    "what": "a deterministic rule that turns a function name into ordered candidate ids for the match loop; the fixed best-guess slot is the placeholder 'ok', which the forge's synthetic verifier accepts today",
+    "where": {
+     "note": "rule; no weights"
+    },
+    "how": "rule",
+    "license": "Void family (same terms as the bundle)"
+   },
+   "content": {
+    "kind": "propose",
+    "params": 0.0,
+    "bytes": 0,
+    "input": "function (name) + optional oracle",
+    "output": "ordered candidate ids"
+   }
+  }
+ ]
+}
